@@ -13,7 +13,7 @@ def gerar_frase():
     openai.api_key = OPENAI_KEY
     prompt = "Crie uma frase curta, poética e profunda sobre gratidão e espiritualidade. Estilo @GratidãoDiária. No máximo 30 palavras."
     resposta = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "Você é um escritor espiritual profundo."},
             {"role": "user", "content": prompt}
