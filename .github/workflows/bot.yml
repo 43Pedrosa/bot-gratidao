@@ -1,0 +1,23 @@
+name: Bot de Gratidão Diário
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # Executa às 7h (Brasília) todos os dias
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clonar o repositório
+      uses: actions/checkout@v3
+
+    - name: Instalar dependências
+      run: pip install -r requirements.txt
+
+    - name: Executar bot
+      env:
+        OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: python bot_gratidao.py
